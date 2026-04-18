@@ -117,8 +117,7 @@
               <div class="t-line t-out">Oluwaseun Ipede</div>
               <div class="t-line"><span class="t-prompt">$</span> What I do</div>
               <div class="t-line t-out t-typing" id="terminal-typing">Loading profile...</div>
-              <div class="t-line"><span class="t-prompt">$</span> completed the last project</div>
-              <div class="t-line t-out t-muted" id="terminal-commits">Something is cooking...</div>
+              <div class="t-line"><span class="t-prompt">$</span> Something is cooking...</div>
               <div class="t-line"><span class="t-prompt">$</span> <span class="t-cursor">▋</span></div>
             </div>
           </div>
@@ -127,25 +126,61 @@
     </div>
   </section>
 
-  <!-- ── SKILLS ── -->
-  <section class="skills section" id="skills">
-    <div class="container">
-      <div class="section-label">02 — Skills</div>
-      <h2 class="section-heading">Technology<br /><em>Stack</em></h2>
-      <div class="Geospatial Analysis, Data Science & Programming, Artificial Intelligence, Cloud Infrastructure,Data Visualization">
-        
+  <<!-- ── SKILLS ── -->
+<section class="skills section" id="skills">
+  <div class="container">
+    <div class="section-label">02 — Skills</div>
+    <h2 class="section-heading">Technology<br /><em>Stack</em></h2>
+    
+    <div class="skills-grid" id="skills-grid">
+      <!-- Category 1 -->
+      <div class="skill-item">
+        <h3>Geospatial Analysis</h3>
+        <p>ArcGIS Pro, QGIS, Remote Sensing</p>
+      </div>
+
+      <!-- Category 2 -->
+      <div class="skill-item">
+        <h3>Data Science & Programming</h3>
+        <p>Python, SQL, R, Statistical Modeling</p>
+      </div>
+
+      <!-- Category 3 -->
+      <div class="skill-item">
+        <h3>Artificial Intelligence</h3>
+        <p>GeoAI, Machine Learning, Azure AI</p>
+      </div>
+
+      <!-- Category 4 -->
+      <div class="skill-item">
+        <h3>Cloud Infrastructure</h3>
+        <p>Azure, Oracle Cloud, Google Earth Engine</p>
+      </div>
+
+      <!-- Category 5 -->
+      <div class="skill-item">
+        <h3>Data Visualization</h3>
+        <p>Power BI, Tableau, Interactive Dashboards</p>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- ── PROJECTS ── -->
-  <section class="projects section" id="projects">
-    <div class="container">
-      <div class="section-label">03 — Projects</div>
-      <h2 class="section-heading">What I've<br /><em>Built</em></h2>
-      <div class="projects-filter" id="projects-filter">
-        <button class="ArcGIS">All</button>
-      </div>
+
+<!-- ── PROJECTS ── -->
+<section class="projects section" id="projects">
+  <div class="container">
+    <div class="section-label">03 — Projects</div>
+    <h2 class="section-heading">What I've<br /><em>Built</em></h2>
+    <div class="projects-filter" id="projects-filter">
+      <button class="filter-btn active" data-filter="all">All</button>
+      <button class="filter-btn" data-filter="arcgis">ArcGIS / Esri</button>
+      <button class="filter-btn" data-filter="python">Python / GeoPandas</button>
+      <button class="filter-btn" data-filter="postgis">PostGIS / SQL</button>
+      <button class="filter-btn" data-filter="qgis">QGIS / Open Source</button>
+      <button class="filter-btn" data-filter="cloud">Cloud / Earth Engine</button>
+    </div>
+    </div>
       <div class="projects-grid" id="projects-grid">
         <div class="projects-loading">
           <div class="loader-ring"></div>
@@ -159,6 +194,7 @@
       </div>
     </div>
   </section>
+
 
   <!-- ── CONTACT ── -->
   <section class="contact section" id="contact">
