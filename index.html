@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Seped28 — Developer Portfolio</title>
+  <meta name="description" content="Full-stack developer portfolio showcasing projects, skills and open-source contributions." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/style.css" />
+</head>
+<body>
+
+  <!-- ── CURSOR ── -->
+  <div class="cursor" id="cursor"></div>
+  <div class="cursor-trail" id="cursor-trail"></div>
+
+  <!-- ── NAV ── -->
+  <nav class="nav" id="nav">
+    <a href="#" class="nav-logo">S28</a>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <a href="https://github.com/Seped28" target="_blank" rel="noopener" class="nav-cta">GitHub ↗</a>
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- ── HERO ── -->
+  <section class="hero" id="home">
+    <div class="hero-bg">
+      <canvas id="grid-canvas"></canvas>
+    </div>
+    <div class="hero-content">
+      <div class="hero-badge"><span class="dot"></span> Open to work</div>
+      <h1 class="hero-title">
+        <span class="line" data-text="Building">Building</span>
+        <span class="line accent" data-text="things that">things that</span>
+        <span class="line" data-text="matter.">matter.</span>
+      </h1>
+      <p class="hero-sub">
+        Developer &amp; creator — turning ideas into fast, clean,<br />
+        purposeful software. Based on GitHub since day one.
+      </p>
+      <div class="hero-actions">
+        <a href="#projects" class="btn-primary">View Projects</a>
+        <a href="#contact" class="btn-ghost">Get in Touch</a>
+      </div>
+    </div>
+    <div class="hero-scroll-hint">
+      <span>Scroll</span>
+      <div class="scroll-line"></div>
+    </div>
+  </section>
+
+  <!-- ── STATS BAR ── -->
+  <div class="stats-bar" id="stats-bar">
+    <div class="stat">
+      <span class="stat-num" id="stat-repos">—</span>
+      <span class="stat-label">Repositories</span>
+    </div>
+    <div class="stat-divider"></div>
+    <div class="stat">
+      <span class="stat-num" id="stat-followers">—</span>
+      <span class="stat-label">Followers</span>
+    </div>
+    <div class="stat-divider"></div>
+    <div class="stat">
+      <span class="stat-num" id="stat-stars">—</span>
+      <span class="stat-label">Stars Earned</span>
+    </div>
+    <div class="stat-divider"></div>
+    <div class="stat">
+      <span class="stat-num" id="stat-commits">—</span>
+      <span class="stat-label">Contributions</span>
+    </div>
+  </div>
+
+  <!-- ── ABOUT ── -->
+  <section class="about section" id="about">
+    <div class="container">
+      <div class="section-label">01 — About</div>
+      <div class="about-grid">
+        <div class="about-text">
+          <h2 class="section-heading">A developer who<br /><em>actually ships.</em></h2>
+          <p>
+            I'm <strong>Seped28</strong> — a software developer passionate about clean architecture,
+            open source, and products that solve real problems. I write code that I'm proud of,
+            document what I build, and constantly push my craft forward.
+          </p>
+          <p>
+            Whether it's a full-stack web app, a CLI tool, or an API integration — I focus on
+            maintainability, performance, and developer experience.
+          </p>
+          <div class="about-tags">
+            <span>Full-Stack</span>
+            <span>Open Source</span>
+            <span>API Design</span>
+            <span>Clean Code</span>
+          </div>
+        </div>
+        <div class="about-visual">
+          <div class="terminal-card">
+            <div class="terminal-bar">
+              <div class="tb-dot red"></div>
+              <div class="tb-dot yellow"></div>
+              <div class="tb-dot green"></div>
+              <span class="terminal-title">~/Seped28</span>
+            </div>
+            <div class="terminal-body" id="terminal-body">
+              <div class="t-line"><span class="t-prompt">$</span> whoami</div>
+              <div class="t-line t-out">seped28</div>
+              <div class="t-line"><span class="t-prompt">$</span> cat README.md</div>
+              <div class="t-line t-out t-typing" id="terminal-typing">Loading profile...</div>
+              <div class="t-line"><span class="t-prompt">$</span> git log --oneline -3</div>
+              <div class="t-line t-out t-muted" id="terminal-commits">Fetching commits...</div>
+              <div class="t-line"><span class="t-prompt">$</span> <span class="t-cursor">▋</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── SKILLS ── -->
+  <section class="skills section" id="skills">
+    <div class="container">
+      <div class="section-label">02 — Skills</div>
+      <h2 class="section-heading">Technology<br /><em>Stack</em></h2>
+      <div class="skills-grid" id="skills-grid">
+        <!-- Dynamically generated from repos + static fallbacks -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ── PROJECTS ── -->
+  <section class="projects section" id="projects">
+    <div class="container">
+      <div class="section-label">03 — Projects</div>
+      <h2 class="section-heading">What I've<br /><em>Built</em></h2>
+      <div class="projects-filter" id="projects-filter">
+        <button class="filter-btn active" data-filter="all">All</button>
+      </div>
+      <div class="projects-grid" id="projects-grid">
+        <div class="projects-loading">
+          <div class="loader-ring"></div>
+          <span>Fetching repositories from GitHub...</span>
+        </div>
+      </div>
+      <div class="projects-more">
+        <a href="https://github.com/Seped28?tab=repositories" target="_blank" rel="noopener" class="btn-ghost">
+          View all on GitHub ↗
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── CONTACT ── -->
+  <section class="contact section" id="contact">
+    <div class="container">
+      <div class="section-label">04 — Contact</div>
+      <div class="contact-inner">
+        <h2 class="section-heading contact-heading">Let's build<br /><em>something together.</em></h2>
+        <p class="contact-sub">
+          Whether you have a project in mind, want to collaborate,<br />
+          or just want to say hi — my inbox is open.
+        </p>
+        <div class="contact-links">
+          <a href="https://github.com/Seped28" target="_blank" rel="noopener" class="contact-link">
+            <div class="cl-icon">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
+            </div>
+            <span>GitHub</span>
+            <div class="cl-arrow">↗</div>
+          </a>
+          <a href="mailto:your@email.com" class="contact-link" id="email-link">
+            <div class="cl-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+            </div>
+            <span>Email Me</span>
+            <div class="cl-arrow">↗</div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FOOTER ── -->
+  <footer class="footer">
+    <div class="container footer-inner">
+      <span class="footer-logo">Seped28</span>
+      <span class="footer-copy">Built with GitHub Pages · <span id="footer-year"></span></span>
+      <a href="#home" class="footer-top">↑ Top</a>
+    </div>
+  </footer>
+
+  <script src="assets/app.js"></script>
+</body>
+</html>
