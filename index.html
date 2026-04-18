@@ -172,6 +172,8 @@
   <div class="container">
     <div class="section-label">03 — Projects</div>
     <h2 class="section-heading">What I've<br /><em>Built</em></h2>
+    
+    <!-- 1. Filters -->
     <div class="projects-filter" id="projects-filter">
       <button class="filter-btn active" data-filter="all">All</button>
       <button class="filter-btn" data-filter="arcgis">ArcGIS / Esri</button>
@@ -181,14 +183,66 @@
       <button class="filter-btn" data-filter="cloud">Cloud / Earth Engine</button>
     </div>
 
-   </div>
-      <div class="projects-more">
-        <a href="https://github.com/Seped28?tab=repositories" target="_blank" rel="noopener" class="btn-ghost">
-          View all on GitHub ↗
-        </a>
-      </div>
+    <!-- 2. The empty grid that the Script will fill -->
+    <div class="projects-grid" id="projects-grid">
+      <!-- Boxes will appear here automatically -->
     </div>
+
+    <!-- 3. Footer link -->
+    <div class="projects-more">
+      <a href="https://github.com" target="_blank" rel="noopener" class="btn-ghost">
+        View all on GitHub ↗
+      </a>
+    </div>
+  </div>
+
+  <!-- 4. The Engine (Script) - Keep this inside or just below the section -->
+  <script>
+    const GITHUB_USER = 'YOUR_GITHUB_USERNAME'; // Change to your username
+
+    async function loadProjects() {
+      const grid = document.getElementById('projects-grid');
+      try {
+        const response = await fetch(`https://github.com{GITHUB_USER}/repos?sort=updated`);
+        const repos = await response.json();
+
+        grid.innerHTML = repos.filter(r => !r.fork).map(repo => {
+          // Identify category for filtering
+          const text = (repo.name + repo.description).toLowerCase();
+          let cat = 'other';
+          if (text.includes('arc') || text.includes('esri')) cat = 'arcgis';
+          else if (text.includes('py') || text.includes('pandas')) cat = 'python';
+          else if (text.includes('sql') || text.includes('post')) cat = 'postgis';
+          else if (text.includes('qgis')) cat = 'qgis';
+          else if (text.includes('cloud') || text.includes('ee')) cat = 'cloud';
+
+          return `
+            <div class="project-card" data-category="${cat}">
+              <span class="project-tag">${repo.language || 'GIS'}</span>
+              <h3 class="project-title">${repo.name.replace(/-/g, ' ')}</h3>
+              <p>${repo.description || 'Geospatial research and development.'}</p>
+              <a href="${repo.html_url}" target="_blank" class="project-link">View Repo ↗</a>
+            </div>
+          `;
+        }).join('');
+
+        // Link the filter buttons to the new boxes
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+          btn.addEventListener('click', () => {
+            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            const filter = btn.dataset.filter;
+            document.querySelectorAll('.project-card').forEach(card => {
+              card.style.display = (filter === 'all' || card.dataset.category === filter) ? 'block' : 'none';
+            });
+          });
+        });
+      } catch (err) { grid.innerHTML = "Failed to load projects."; }
+    }
+    loadProjects();
+  </script>
 </section>
+
 
   <!-- ── CONTACT ── -->
   <section class="contact section" id="contact">
