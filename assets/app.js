@@ -195,19 +195,39 @@ async function loadProfile() {
 // ─── LOAD REPOS & PROJECTS ───────────────────────────────────────────
 async function loadRepos() {
   const grid = document.getElementById('projects-grid');
+  const CACHE_KEY = 'github_repos_cache';
+  const CACHE_TIME_KEY = 'github_repos_timestamp';
+  const ONE_HOUR = 60 * 60 * 1000; // 3600000 ms
 
   try {
-    // Fetch all repos (up to 100)
-    const repos = await ghFetch(
-      `/users/${GITHUB_USERNAME}/repos?sort=updated&per_page=100&type=owner`
-    );
+    let repos;
+    const cachedData = localStorage.getItem(CACHE_KEY);
+    const cachedTimestamp = localStorage.getItem(CACHE_TIME_KEY);
 
-    // Exclude forks and very small/empty repos, sort by stars then updated
+    // 1. Check if we have a valid cache (under 1 hour old)
+    if (cachedData && cachedTimestamp && (Date.now() - cachedTimestamp < ONE_HOUR)) {
+      console.log("Loading projects from local cache to save API limit...");
+      repos = JSON.parse(cachedData);
+    } else {
+      // 2. No valid cache, so we fetch from GitHub
+      repos = await ghFetch(
+        `/users/${GITHUB_USERNAME}/repos?sort=updated&per_page=100&type=owner`
+      );
+      
+      // Save the new data and the current time to the cache
+      localStorage.setItem(CACHE_KEY, JSON.stringify(repos));
+      localStorage.setItem(CACHE_TIME_KEY, Date.now());
+    }
+
+    // 3. Keep your existing filtering and sorting logic
     const filtered = repos
       .filter(r => !r.fork && r.name !== GITHUB_USERNAME)
       .sort((a, b) => (b.stargazers_count - a.stargazers_count) || (new Date(b.updated_at) - new Date(a.updated_at)));
 
     const displayed = filtered.slice(0, 30);
+
+    // ... rest of your code that displays 'displayed' to the grid ...
+
 
     // ── Total stars ──
     const totalStars = repos.reduce((s, r) => s + r.stargazers_count, 0);
