@@ -152,82 +152,101 @@ async function ghFetch(path) {
   const r = await fetch(`${GITHUB_API}${path}`, {
     headers: { 'Accept': 'application/vnd.github.v3+json' }
   });
+  // If we hit a rate limit (403), try to return cached data if available
+  if (r.status === 403) throw new Error("RATE_LIMIT"); 
   if (!r.ok) throw new Error(`GitHub API error: ${r.status}`);
   return r.json();
 }
 
 // ─── LOAD PROFILE ────────────────────────────────────────────────────
 async function loadProfile() {
+  const CACHE_KEY = 'gh_profile_cache';
+  const ONE_HOUR = 3600000;
+  
   try {
-    const user = await ghFetch(`/users/${GITHUB_USERNAME}`);
+    let user;
+    const cached = localStorage.getItem(CACHE_KEY);
+    const lastFetch = localStorage.getItem(CACHE_KEY + '_time');
 
-    // Stats bar
+    if (cached && lastFetch && (Date.now() - lastFetch < ONE_HOUR)) {
+      user = JSON.parse(cached);
+    } else {
+      user = await ghFetch(`/users/${GITHUB_USERNAME}`);
+      localStorage.setItem(CACHE_KEY, JSON.stringify(user));
+      localStorage.setItem(CACHE_KEY + '_time', Date.now());
+    }
+
     animateCount(document.getElementById('stat-repos'),     user.public_repos);
     animateCount(document.getElementById('stat-followers'),  user.followers);
 
-    // Email link
     if (user.email) {
       const emailLink = document.getElementById('email-link');
-      emailLink.href = `mailto:${user.email}`;
+      if(emailLink) emailLink.href = `mailto:${user.email}`;
     }
 
-    // Terminal card
     const bioText = user.bio || `Software developer · ${user.public_repos} public repositories`;
     const termEl  = document.getElementById('terminal-typing');
-    termEl.textContent = '';
-    let i = 0;
-    const bioInterval = setInterval(() => {
-      if (i < bioText.length) {
-        termEl.textContent += bioText[i++];
-      } else {
-        clearInterval(bioInterval);
-      }
-    }, 40);
-
+    if (termEl) {
+      termEl.textContent = '';
+      let i = 0;
+      const bioInterval = setInterval(() => {
+        if (i < bioText.length) {
+          termEl.textContent += bioText[i++];
+        } else {
+          clearInterval(bioInterval);
+        }
+      }, 40);
+    }
     return user;
   } catch (err) {
     console.warn('Profile fetch failed:', err.message);
-    document.getElementById('stat-repos').textContent     = '—';
-    document.getElementById('stat-followers').textContent = '—';
+    // Fallback to cache even if expired if we hit a rate limit
+    const backup = localStorage.getItem(CACHE_KEY);
+    if (backup) return JSON.parse(backup);
   }
 }
 
 // ─── LOAD REPOS & PROJECTS ───────────────────────────────────────────
 async function loadRepos() {
-  const grid = document.getElementById('projects-grid');
   const CACHE_KEY = 'github_repos_cache';
   const CACHE_TIME_KEY = 'github_repos_timestamp';
-  const ONE_HOUR = 60 * 60 * 1000; // 3600000 ms
+  const ONE_HOUR = 3600000;
 
   try {
     let repos;
     const cachedData = localStorage.getItem(CACHE_KEY);
     const cachedTimestamp = localStorage.getItem(CACHE_TIME_KEY);
 
-    // 1. Check if we have a valid cache (under 1 hour old)
     if (cachedData && cachedTimestamp && (Date.now() - cachedTimestamp < ONE_HOUR)) {
-      console.log("Loading projects from local cache to save API limit...");
       repos = JSON.parse(cachedData);
     } else {
-      // 2. No valid cache, so we fetch from GitHub
-      repos = await ghFetch(
-        `/users/${GITHUB_USERNAME}/repos?sort=updated&per_page=100&type=owner`
-      );
-      
-      // Save the new data and the current time to the cache
+      repos = await ghFetch(`/users/${GITHUB_USERNAME}/repos?sort=updated&per_page=100&type=owner`);
       localStorage.setItem(CACHE_KEY, JSON.stringify(repos));
       localStorage.setItem(CACHE_TIME_KEY, Date.now());
     }
 
-    // 3. Keep your existing filtering and sorting logic
     const filtered = repos
       .filter(r => !r.fork && r.name !== GITHUB_USERNAME)
       .sort((a, b) => (b.stargazers_count - a.stargazers_count) || (new Date(b.updated_at) - new Date(a.updated_at)));
 
     const displayed = filtered.slice(0, 30);
-
-    // ... rest of your code that displays 'displayed' to the grid ...
-
+    renderProjects(displayed); // Make sure your rendering function is called here
+  } catch (err) {
+    console.error("Repo load failed:", err.message);
+    const grid = document.getElementById('projects-grid');
+    if (err.message === "RATE_LIMIT" || grid.innerHTML.includes("loading")) {
+        // Try to show expired cache rather than an error if possible
+        const backup = localStorage.getItem(CACHE_KEY);
+        if (backup) {
+            const repos = JSON.parse(backup);
+            const filtered = repos.filter(r => !r.fork && r.name !== GITHUB_USERNAME);
+            renderProjects(filtered.slice(0, 30));
+        } else {
+            grid.innerHTML = `<div class="error">⚠️ Could not load repositories. GitHub API rate limit may be active.</div>`;
+        }
+    }
+  }
+}
 
     // ── Total stars ──
     const totalStars = repos.reduce((s, r) => s + r.stargazers_count, 0);
