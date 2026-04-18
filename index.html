@@ -190,7 +190,7 @@
 
     <!-- 3. Footer link -->
     <div class="projects-more">
-      <a href="https://github.com" target="_blank" rel="noopener" class="btn-ghost">
+      <a href="https://github.com/Seped28?tab=repositories" target="_blank" rel="noopener" class="btn-ghost">
         View all on GitHub ↗
       </a>
     </div>
@@ -198,12 +198,12 @@
 
   <!-- 4. The Engine (Script) - Keep this inside or just below the section -->
   <script>
-    const GITHUB_USER = 'YOUR_GITHUB_USERNAME'; // Change to your username
+    const GITHUB_USER = 'Seped28'; // Change to your username
 
     async function loadProjects() {
       const grid = document.getElementById('projects-grid');
       try {
-        const response = await fetch(`https://github.com{GITHUB_USER}/repos?sort=updated`);
+        const response = await fetch(`https://github.com/Seped28?tab=repositories`);
         const repos = await response.json();
 
         grid.innerHTML = repos.filter(r => !r.fork).map(repo => {
