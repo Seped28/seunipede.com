@@ -1,240 +1,447 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Oluwaseun — Geospatial Specialist</title>
-  <meta name="description" content="Full-stack developer portfolio showcasing projects, skills and open-source contributions." />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="assets/style.css" />
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Oluwaseun Ipede — Geospatial Scientist &amp; GeoAI Researcher</title>
+<meta name="description" content="Oluwaseun Ipede — Geospatial scientist specializing in GIS, remote sensing, GeoAI, and spatial epidemiology. MSc Applied Geography, Georgia Southern University." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Syne:wght@400;600;700;800&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;1,9..144,400&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="assets/style.css" />
 </head>
 <body>
 
-  <!-- ── CURSOR ── -->
-  <div class="cursor" id="cursor"></div>
-  <div class="cursor-trail" id="cursor-trail"></div>
+<!-- ── CURSOR ── -->
+<div class="cursor" id="cursor"></div>
+<div class="cursor-trail" id="cursor-trail"></div>
 
-  <!-- ── NAV ── -->
-  <nav class="nav" id="nav">
-    <a href="#" class="nav-logo">S28</a>
-    <ul class="nav-links">
-      <li><a href="#about">About</a></li>
-      <li><a href="#skills">Skills</a></li>
-      <li><a href="#projects">Projects</a></li>
-      <li><a href="#contact">Contact</a></li>
-    </ul>
-    <a href="https://github.com/Seped28" target="_blank" rel="noopener" class="nav-cta">GitHub ↗</a>
-    <button class="hamburger" id="hamburger" aria-label="Menu">
-      <span></span><span></span><span></span>
-    </button>
-  </nav>
+<!-- ── NAV ── -->
+<nav class="nav" id="nav">
+  <a href="#home" class="nav-logo">O·I</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#research">Research</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#credentials">Credentials</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="https://scholar.google.com/citations?user=E1H5seoAAAAJ&hl=en" target="_blank" rel="noopener" class="nav-cta">Google Scholar ↗</a>
+  <button class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+</nav>
 
-  <!-- ── HERO ── -->
-  <section class="hero" id="home">
-    <div class="hero-bg">
-      <canvas id="grid-canvas"></canvas>
+<!-- ── HERO ── -->
+<section class="hero" id="home">
+  <div class="hero-bg"><canvas id="contour-canvas"></canvas></div>
+  <div class="hero-content">
+    <div class="hero-badge"><span class="dot"></span> Open to research &amp; industry collaboration</div>
+    <h1 class="hero-title">
+      <span class="line">Mapping the</span>
+      <span class="line accent">invisible</span>
+      <span class="line">connections of place.</span>
+    </h1>
+    <p class="hero-sub">
+      I'm <strong>Oluwaseun Ipede</strong> — a geospatial scientist and GeoAI researcher
+      turning satellite imagery, spatial statistics, and machine learning into evidence
+      for healthier, more resilient cities.
+    </p>
+    <div class="hero-actions">
+      <a href="#research" class="btn-primary">Explore Research</a>
+      <a href="#contact" class="btn-ghost">Get in Touch</a>
     </div>
-    <div class="hero-content">
-      <div class="hero-badge"><span class="dot"></span> Open to work</div>
-      <h1 class="hero-title">
-        <span class="line" data-text="Building">Building</span>
-        <span class="line accent" data-text="things that">things that</span>
-        <span class="line" data-text="matter.">matter.</span>
-      </h1>
-      <p class="hero-sub">
-        Developer &amp; creator — turning ideas into fast, clean,<br />
-        purposeful software. Based on GitHub since day one. I speak spatial!
-      </p>
-      <div class="hero-actions">
-        <a href="#projects" class="btn-primary">View Projects</a>
-        <a href="#contact" class="btn-ghost">Get in Touch</a>
-      </div>
-    </div>
-    <div class="hero-scroll-hint">
-      <span>Scroll</span>
-      <div class="scroll-line"></div>
-    </div>
-  </section>
-
-  <!-- ── STATS BAR ── -->
-  <div class="stats-bar" id="stats-bar">
-    <div class="stat">
-      <span class="stat-num" id="stat-repos">—</span>
-      <span class="stat-label">Repositories</span>
-    </div>
-    <div class="stat-divider"></div>
-    <div class="stat">
-      <span class="stat-num" id="stat-followers">—</span>
-      <span class="stat-label">Followers</span>
-    </div>
-    <div class="stat-divider"></div>
-    <div class="stat">
-      <span class="stat-num" id="stat-stars">—</span>
-      <span class="stat-label">Stars Earned</span>
-    </div>
-    <div class="stat-divider"></div>
-    <div class="stat">
-      <span class="stat-num" id="stat-commits">—</span>
-      <span class="stat-label">Contributions</span>
+    <div class="hero-meta">
+      <span>MSc Applied Geography — Georgia Southern University</span>
+      <span class="meta-sep">·</span>
+      <span>FAA Certified Remote Pilot</span>
     </div>
   </div>
+  <div class="hero-scroll-hint"><span>Scroll</span><div class="scroll-line"></div></div>
+</section>
 
-  <!-- ── ABOUT ── -->
-  <section class="about section" id="about">
-    <div class="container">
-      <div class="section-label">01 — About</div>
-      <div class="about-grid">
-        <div class="about-text">
-          <h2 class="section-heading">A Geospatial nerd who<br /><em>actually ships.</em></h2>
-          <p>
-            I'm <strong>Oluwaseun (or simply "Seun")</strong> — a geospatial guru and environmental scientist dedicated to leveraging spatial technology and AI to solve complex global challenges. 
-            I bridge data-driven innovation and community wellbeing, with a strong track record in academic research and sustainability advocacy.
-            I write code that I'm proud of, document what I build, and constantly push my craft forward.
-          </p>
-          <p>
-            Whether it's a full-stack web app, a dashboard, or research, I focus on
-            maintainability, performance, and insightful experience.
-          </p>
-          <div class="about-tags">
-            <span>Full stack Geospatial</span>
-            <span>Sustainability</span>
-            <span>Smart Cities</span>
-            <span>GeoHealth</span>
-          </div>
-        </div>
-        <div class="about-visual">
-          <div class="terminal-card">
-            <div class="terminal-bar">
-              <div class="tb-dot red"></div>
-              <div class="tb-dot yellow"></div>
-              <div class="tb-dot green"></div>
-              <span class="terminal-title">~/Oluwaseun ipede</span>
-            </div>
-            <div class="terminal-body" id="terminal-body">
-              <div class="t-line"><span class="t-prompt">$</span> I am </div>
-              <div class="t-line t-out">Oluwaseun Ipede</div>
-              <div class="t-line"><span class="t-prompt">$</span> What I do</div>
-              <div class="t-line t-out t-typing" id="terminal-typing">Loading profile...</div>
-              <div class="t-line"><span class="t-prompt">$</span> Something is cooking...</div>
-              <div class="t-line"><span class="t-prompt">$</span> <span class="t-cursor">▋</span></div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+<!-- ── STATS ── -->
+<div class="stats-bar" id="stats-bar">
+  <div class="stat"><span class="stat-num" data-count="16">—</span><span class="stat-label">Publications</span></div>
+  <div class="stat-divider"></div>
+  <div class="stat"><span class="stat-num" data-count="200">—</span><span class="stat-label">Citations (RG)</span></div>
+  <div class="stat-divider"></div>
+  <div class="stat"><span class="stat-num" data-count="26600" data-suffix="+">—</span><span class="stat-label">Research Reads</span></div>
+  <div class="stat-divider"></div>
+  <div class="stat"><span class="stat-num" data-count="9" data-suffix="+">—</span><span class="stat-label">Certifications</span></div>
+</div>
 
-  <<!-- ── SKILLS ── -->
-<section class="skills section" id="skills">
+<!-- ── ABOUT ── -->
+<section class="about section" id="about">
   <div class="container">
-    <div class="section-label">02 — Skills</div>
-    <h2 class="section-heading">Technology<br /><em>Stack</em></h2>
-    
-    <div class="skills-grid" id="skills-grid">
-      <!-- Category 1 -->
-      <div class="skill-item">
-        <h3>Geospatial Analysis</h3>
-        <p>ArcGIS Pro, QGIS, Remote Sensing</p>
+    <div class="section-label">01 — About</div>
+    <div class="about-grid">
+      <div class="about-text">
+        <h2 class="section-heading">A geospatial nerd<br /><em>who actually ships.</em></h2>
+        <p>
+          I'm a geospatial guru and environmental scientist dedicated to leveraging spatial
+          technology and AI to solve complex global challenges. I bridge data-driven innovation
+          and community wellbeing, with a track record spanning academic research, sustainability
+          advocacy, and applied product building.
+        </p>
+        <p>
+          My work explores environmental monitoring, land use change, spatial epidemiology, and
+          the built environment's effect on human health — using remote sensing, GIS, and
+          geographically weighted models (GWR / MGWR / GTWR) to reveal patterns that global,
+          non-spatial statistics miss.
+        </p>
+        <p>
+          Beyond the lab, I'm an active <strong>FIG (International Federation of Surveyors)</strong>
+          volunteer, an <strong>FAA Certified Remote Pilot</strong>, and the product owner of
+          <strong>YASA Nigeria</strong> — a university discovery &amp; AI counseling platform for
+          Nigerian students.
+        </p>
+        <div class="about-tags">
+          <span>Full-Stack Geospatial</span>
+          <span>GeoAI</span>
+          <span>Spatial Epidemiology</span>
+          <span>Smart Cities</span>
+          <span>Sustainability &amp; SDGs</span>
+        </div>
       </div>
-
-      <!-- Category 2 -->
-      <div class="skill-item">
-        <h3>Data Science & Programming</h3>
-        <p>Python, SQL, R, Statistical Modeling</p>
-      </div>
-
-      <!-- Category 3 -->
-      <div class="skill-item">
-        <h3>Artificial Intelligence</h3>
-        <p>GeoAI, Machine Learning, Azure AI</p>
-      </div>
-
-      <!-- Category 4 -->
-      <div class="skill-item">
-        <h3>Cloud Infrastructure</h3>
-        <p>Azure, Oracle Cloud, Google Earth Engine</p>
-      </div>
-
-      <!-- Category 5 -->
-      <div class="skill-item">
-        <h3>Data Visualization</h3>
-        <p>Power BI, Tableau, Interactive Dashboards</p>
+      <div class="about-visual">
+        <div class="field-card">
+          <div class="field-bar">
+            <div class="tb-dot red"></div><div class="tb-dot yellow"></div><div class="tb-dot green"></div>
+            <span class="field-title">field_notes.geojson</span>
+          </div>
+          <div class="field-body">
+            <div class="f-row"><span class="f-key">name</span><span class="f-val">"Oluwaseun Ipede"</span></div>
+            <div class="f-row"><span class="f-key">role</span><span class="f-val">"Geospatial Scientist / GeoAI Researcher"</span></div>
+            <div class="f-row"><span class="f-key">institution</span><span class="f-val">"Georgia Southern University"</span></div>
+            <div class="f-row"><span class="f-key">focus</span><span class="f-val f-typing" id="focus-typing"></span></div>
+            <div class="f-row"><span class="f-key">tools</span><span class="f-val">["ArcGIS Pro","QGIS","Python","GEE","Azure AI"]</span></div>
+            <div class="f-row"><span class="f-key">status</span><span class="f-val"><span class="pulse-chip">● actively publishing</span></span></div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
-
- <!-- ── PROJECTS ── -->
-<section class="projects section" id="projects">
+<!-- ── RESEARCH ── -->
+<section class="research section" id="research">
   <div class="container">
-    <div class="section-label">03 — Projects</div>
-    <h2 class="section-heading">What I've<br /><em>Built</em></h2>
-    <div class="projects-filter" id="projects-filter">
-      <button class="filter-btn active" data-filter="all">All</button>
-      <button class="filter-btn" data-filter="arcgis">ArcGIS / Esri</button>
-      <button class="filter-btn" data-filter="python">Python / GeoPandas</button>
-      <button class="filter-btn" data-filter="postgis">PostGIS / SQL</button>
-      <button class="filter-btn" data-filter="qgis">QGIS / Open Source</button>
-      <button class="filter-btn" data-filter="cloud">Cloud / Earth Engine</button>
-      </div>
-      <div class="projects-grid" id="projects-grid">
-        <div class="projects-loading">
-          <div class="loader-ring"></div>
-          <span>Fetching repositories from GitHub...</span>
+    <div class="section-label">02 — Research</div>
+    <h2 class="section-heading">Peer-Reviewed<br /><em>&amp; In Progress</em></h2>
+    <p class="section-intro">
+      My research applies spatial statistics and remote sensing to public health, climate
+      resilience, and urban planning. Full record on
+      <a href="https://scholar.google.com/citations?user=E1H5seoAAAAJ&hl=en" target="_blank" rel="noopener">Google Scholar ↗</a>
+      and <a href="https://www.researchgate.net/profile/Oluwaseun-Ipede" target="_blank" rel="noopener">ResearchGate ↗</a>.
+    </p>
+
+    <div class="pub-list">
+
+      <article class="pub-card">
+        <div class="pub-year">2026</div>
+        <div class="pub-body">
+          <h3 class="pub-title">Urban Oases: The Critical Role of Green and Blue Spaces in Mental Well-Being</h3>
+          <p class="pub-authors">Ipede, O.; Lin, M.; Hladik, C.; Tu, W. — <em>Sustainability</em>, 18(2), 642.</p>
+          <p class="pub-desc">
+            A national-scale study across major U.S. cities (2015–2017) examining how urban green
+            and blue space exposure relates to Frequent Mental Distress. OLS regression found
+            statistically significant but spatially uniform associations, while Geographically
+            Weighted Regression (GWR) revealed considerable spatial variation in effects across
+            cities — evidence that "one-size-fits-all" urban planning misses local nuance.
+          </p>
+          <div class="pub-links">
+            <a href="https://doi.org/10.3390/su18020642" target="_blank" rel="noopener" class="pub-link">DOI: 10.3390/su18020642 ↗</a>
+            <a href="https://digitalcommons.georgiasouthern.edu/geo-facpubs/216/" target="_blank" rel="noopener" class="pub-link">Georgia Southern Digital Commons ↗</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="pub-card">
+        <div class="pub-year">2026</div>
+        <div class="pub-body">
+          <h3 class="pub-title">Land Use/Land Cover Change Detection and Assessment of Flood Susceptibility in the Niger Delta Region</h3>
+          <p class="pub-authors">Tosin-Orimolade, A.; Rahman, M.K.; Ipede, O. et al. — <em>Climate</em>.</p>
+          <p class="pub-desc">
+            Investigates how intensive oil exploration and gas flaring in the Niger Delta drive
+            local climate change and land cover shifts that compound flood risk — a region where
+            flooding remains a recurrent disaster disproportionately affecting vulnerable communities.
+          </p>
+          <div class="pub-links">
+            <a href="https://doi.org/10.3390/cli14050108" target="_blank" rel="noopener" class="pub-link">DOI: 10.3390/cli14050108 ↗</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="pub-card">
+        <div class="pub-year">2025</div>
+        <div class="pub-body">
+          <h3 class="pub-title">Urban Oases: The Critical Role of Green and Blue Spaces in Mental Wellbeing</h3>
+          <p class="pub-authors">Presented at the American Association of Geographers (AAG) Annual Meeting — Detroit, MI.</p>
+          <p class="pub-desc">
+            Presented findings to a global audience of geographers, GIS scientists, and public
+            health experts — described by Ipede as "the Super Bowl of spatial science." The talk
+            argued that good city planning isn't just about infrastructure — it's about healthier,
+            happier people.
+          </p>
+          <div class="pub-links">
+            <a href="https://digitalcommons.georgiasouthern.edu/etd/2971/" target="_blank" rel="noopener" class="pub-link">Master's Thesis (ETD) ↗</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="pub-card pub-inprogress">
+        <div class="pub-year">2027<span class="pub-tag">In Progress</span></div>
+        <div class="pub-body">
+          <h3 class="pub-title">From Calculator to Algorithm</h3>
+          <p class="pub-authors">FIG Working Week 2027 — tri-continental collaboration.</p>
+          <p class="pub-desc">
+            A verified-data-only study of how AI and algorithmic tools are reshaping the surveying
+            profession, built on three evidence layers: a PRISMA meta-analysis pipeline, discourse
+            analysis of Reddit/RPLS.com surveying communities, and an original Institutional
+            Readiness Index. Targeting the 1 October 2026 abstract deadline.
+          </p>
+        </div>
+      </article>
+
+      <article class="pub-card pub-inprogress">
+        <div class="pub-year">Ongoing<span class="pub-tag">Longitudinal</span></div>
+        <div class="pub-body">
+          <h3 class="pub-title">Urban Oases II — MGWR/GTWR Extension</h3>
+          <p class="pub-authors">Census-tract level, 2015–2023, national coverage.</p>
+          <p class="pub-desc">
+            Extending the original Urban Oases model into a continuous longitudinal Multiscale
+            Geographically Weighted Regression (MGWR) and Geographically &amp; Temporally Weighted
+            Regression (GTWR) study, with detailed case studies across Atlanta/Fulton County,
+            Miami-Dade, and Los Angeles.
+          </p>
+        </div>
+      </article>
+
+    </div>
+
+    <div class="research-links">
+      <a href="https://scholar.google.com/citations?user=E1H5seoAAAAJ&hl=en" target="_blank" rel="noopener" class="btn-ghost">Google Scholar Profile ↗</a>
+      <a href="https://www.researchgate.net/profile/Oluwaseun-Ipede" target="_blank" rel="noopener" class="btn-ghost">ResearchGate Profile ↗</a>
+    </div>
+  </div>
+</section>
+
+<!-- ── SKILLS ── -->
+<section class="skills section" id="skills">
+  <div class="container">
+    <div class="section-label">03 — Skills</div>
+    <h2 class="section-heading">Technical<br /><em>Toolkit</em></h2>
+
+    <div class="skills-grid">
+      <div class="skill-card">
+        <div class="skill-icon">🗺️</div>
+        <h3>Geospatial Analysis</h3>
+        <p>ArcGIS Pro, QGIS, Remote Sensing, Spatial Statistics</p>
+        <div class="skill-bars">
+          <span></span><span></span><span></span><span></span><span class="dim"></span>
         </div>
       </div>
+      <div class="skill-card">
+        <div class="skill-icon">📊</div>
+        <h3>Data Science &amp; Programming</h3>
+        <p>Python, SQL, R, Statistical Modeling (GWR/MGWR/GTWR)</p>
+        <div class="skill-bars">
+          <span></span><span></span><span></span><span class="dim"></span><span class="dim"></span>
+        </div>
       </div>
-      <div class="projects-more">
-        <a href="https://github.com/Seped28?tab=repositories" target="_blank" rel="noopener" class="btn-ghost">
-          View all on GitHub ↗
+      <div class="skill-card">
+        <div class="skill-icon">🤖</div>
+        <h3>Artificial Intelligence</h3>
+        <p>GeoAI, Machine Learning, Azure AI Fundamentals</p>
+        <div class="skill-bars">
+          <span></span><span></span><span></span><span class="dim"></span><span class="dim"></span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-icon">☁️</div>
+        <h3>Cloud Infrastructure</h3>
+        <p>Microsoft Azure, Oracle Cloud, Google Earth Engine</p>
+        <div class="skill-bars">
+          <span></span><span></span><span></span><span class="dim"></span><span class="dim"></span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-icon">📈</div>
+        <h3>Data Visualization</h3>
+        <p>Power BI, Tableau, ArcGIS StoryMaps, Interactive Dashboards</p>
+        <div class="skill-bars">
+          <span></span><span></span><span></span><span></span><span class="dim"></span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-icon">🚁</div>
+        <h3>Drone &amp; Field Ops</h3>
+        <p>FAA Part 107 Certified Remote Pilot, UAV Mapping</p>
+        <div class="skill-bars">
+          <span></span><span></span><span></span><span></span><span class="dim"></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── PROJECTS ── -->
+<section class="projects section" id="projects">
+  <div class="container">
+    <div class="section-label">04 — Projects</div>
+    <h2 class="section-heading">Selected<br /><em>Work</em></h2>
+
+    <div class="projects-grid">
+
+      <div class="project-card featured">
+        <div class="project-tag">Research · Live App</div>
+        <h3 class="project-name">Urban Oases</h3>
+        <p class="project-desc">
+          National-scale GWR/MGWR study mapping the relationship between urban green &amp; blue
+          space and Frequent Mental Distress across U.S. cities. Published in <em>Sustainability</em>
+          (MDPI); extended into an Esri StoryMaps entry with a two-act scroll-driven narrative and
+          continuous fly-in Map Tour.
+        </p>
+        <div class="project-stack">
+          <span>GWR / MGWR</span><span>ArcGIS StoryMaps</span><span>Remote Sensing</span>
+        </div>
+        <a href="https://doi.org/10.3390/su18020642" target="_blank" rel="noopener" class="project-link-full">Read the paper ↗</a>
+      </div>
+
+      <div class="project-card">
+        <div class="project-tag">Product · Nigeria</div>
+        <h3 class="project-name">YASA Nigeria</h3>
+        <p class="project-desc">
+          Product owner of a Nigerian university discovery &amp; AI counseling mobile web app —
+          helping students navigate admissions with campus mapping built on OSM/GeoJSON.
+        </p>
+        <div class="project-stack">
+          <span>React</span><span>Leaflet</span><span>Cloudflare Workers</span>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-tag">Climate Resilience</div>
+        <h3 class="project-name">Niger Delta Flood Susceptibility</h3>
+        <p class="project-desc">
+          Land use/land cover change detection combined with flood susceptibility modeling across
+          the Niger Delta, tying oil exploration and gas flaring to compounding climate risk.
+        </p>
+        <div class="project-stack">
+          <span>LULC Change</span><span>GIS</span><span>Climate Modeling</span>
+        </div>
+        <a href="https://doi.org/10.3390/cli14050108" target="_blank" rel="noopener" class="project-link-full">Read the paper ↗</a>
+      </div>
+
+      <div class="project-card">
+        <div class="project-tag">Cartography</div>
+        <h3 class="project-name">Communication of Methodology — Map Gallery</h3>
+        <p class="project-desc">
+          Dark-navy, glowing-magenta cartographic poster built for the Esri Map Gallery's
+          "Communication of Methodology" category, translating the MGWR census-tract analysis
+          into a single striking visual narrative.
+        </p>
+        <div class="project-stack">
+          <span>Cartographic Design</span><span>ArcGIS Pro</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── CREDENTIALS ── -->
+<section class="credentials section" id="credentials">
+  <div class="container">
+    <div class="section-label">05 — Credentials</div>
+    <h2 class="section-heading">Certifications<br /><em>&amp; Achievements</em></h2>
+
+    <div class="cred-timeline">
+      <div class="cred-item">
+        <div class="cred-year">2025</div>
+        <div class="cred-content"><strong>Certified Drone Pilot</strong><span>FAA Part 107</span></div>
+      </div>
+      <div class="cred-item">
+        <div class="cred-year">2023</div>
+        <div class="cred-content"><strong>Microsoft Certified</strong><span>Azure AI Fundamentals</span></div>
+      </div>
+      <div class="cred-item">
+        <div class="cred-year">2023</div>
+        <div class="cred-content"><strong>Oracle Cloud Data Management</strong><span>2023 Certified Foundations Associate</span></div>
+      </div>
+      <div class="cred-item">
+        <div class="cred-year">2023</div>
+        <div class="cred-content"><strong>Google Business Intelligence</strong><span>Certificate</span></div>
+      </div>
+      <div class="cred-item">
+        <div class="cred-year">2022</div>
+        <div class="cred-content"><strong>Google Data Analyst Program</strong><span>Coursera</span></div>
+      </div>
+      <div class="cred-item">
+        <div class="cred-year">2022</div>
+        <div class="cred-content"><strong>ESRI Young Professionals Network</strong><span>Member</span></div>
+      </div>
+      <div class="cred-item">
+        <div class="cred-year">2021</div>
+        <div class="cred-content"><strong>Google IT Support Specialist</strong><span>Career Program, Coursera</span></div>
+      </div>
+      <div class="cred-item">
+        <div class="cred-year">2021</div>
+        <div class="cred-content"><strong>Institute of Project &amp; Contract/Facility Management Ghana</strong><span>Associate Member</span></div>
+      </div>
+      <div class="cred-item">
+        <div class="cred-year">2021</div>
+        <div class="cred-content"><strong>Data Visualization &amp; Cartography (DVAC)</strong><span>African Drone &amp; Data Academy, Malawi</span></div>
+      </div>
+      <div class="cred-item">
+        <div class="cred-year">2021</div>
+        <div class="cred-content"><strong>Programming for Geospatial Hydrological Applications</strong><span>UNESCO</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CONTACT ── -->
+<section class="contact section" id="contact">
+  <div class="container">
+    <div class="section-label">06 — Contact</div>
+    <div class="contact-inner">
+      <h2 class="section-heading contact-heading">Let's build<br /><em>something together.</em></h2>
+      <p class="contact-sub">
+        Open to research collaboration, speaking opportunities, and geospatial /
+        GeoAI consulting. My inbox is open.
+      </p>
+      <div class="contact-links">
+        <a href="mailto:oluwaseunipede@gmail.com" class="contact-link" id="email-link">
+          <div class="cl-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg></div>
+          <span>Email Me</span><div class="cl-arrow">↗</div>
+        </a>
+        <a href="https://scholar.google.com/citations?user=E1H5seoAAAAJ&hl=en" target="_blank" rel="noopener" class="contact-link">
+          <div class="cl-icon"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M5.242 13.769L0 9.5 12 0l12 9.5-5.242 4.269C17.548 11.24 14.978 9.5 12 9.5c-2.977 0-5.548 1.74-6.758 4.269zM12 10a7 7 0 100 14 7 7 0 000-14z"/></svg></div>
+          <span>Google Scholar</span><div class="cl-arrow">↗</div>
+        </a>
+        <a href="https://www.researchgate.net/profile/Oluwaseun-Ipede" target="_blank" rel="noopener" class="contact-link">
+          <div class="cl-icon"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.586 0c-.818 0-1.508.19-2.073.565-.563.377-.97.936-1.213 1.68a3.193 3.193 0 00-.112.437 8.365 8.365 0 00-.078.62 9.94 9.94 0 00-.023.833v.036c0 .29.01.55.024.782.017.234.042.46.078.67.037.21.083.407.14.586.058.18.128.35.213.51.222.42.53.756.914 1.007a3.1 3.1 0 001.293.51v.11c0 .49-.13.86-.39 1.11-.26.25-.62.376-1.08.376-.253 0-.5-.045-.735-.135a2.09 2.09 0 01-.596-.34l-.9 1.29c.34.29.72.5 1.14.65.42.14.87.21 1.35.21.65 0 1.22-.13 1.71-.39.49-.26.87-.62 1.14-1.08.27-.46.4-.99.4-1.6V0h-1.786zM4.418 6.4c-1.24 0-2.24.34-3 1.02C.66 8.1.27 9.02.27 10.16v.24c0 1.14.39 2.06 1.15 2.75.76.69 1.76 1.03 3 1.03.4 0 .8-.04 1.17-.13.38-.09.71-.21 1-.36v3.68H4.16v1.71h6.87v-1.71H8.6V6.4H4.418zm.05 1.6c.53 0 .96.14 1.28.42.32.28.48.68.48 1.18v.22c0 .5-.16.9-.48 1.18-.32.28-.75.42-1.28.42-.53 0-.95-.14-1.27-.42-.32-.28-.48-.68-.48-1.18v-.22c0-.5.16-.9.48-1.18.32-.28.74-.42 1.27-.42z"/></svg></div>
+          <span>ResearchGate</span><div class="cl-arrow">↗</div>
+        </a>
+        <a href="https://github.com/Seped28" target="_blank" rel="noopener" class="contact-link">
+          <div class="cl-icon"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg></div>
+          <span>GitHub</span><div class="cl-arrow">↗</div>
         </a>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
+<!-- ── FOOTER ── -->
+<footer class="footer">
+  <div class="container footer-inner">
+    <span class="footer-logo">Oluwaseun Ipede</span>
+    <span class="footer-copy">Geospatial Scientist · <span id="footer-year"></span></span>
+    <a href="#home" class="footer-top">↑ Top</a>
+  </div>
+</footer>
 
-  <!-- ── CONTACT ── -->
-  <section class="contact section" id="contact">
-    <div class="container">
-      <div class="section-label">04 — Contact</div>
-      <div class="contact-inner">
-        <h2 class="section-heading contact-heading">Let's build<br /><em>something together.</em></h2>
-        <p class="contact-sub">
-          Whether you have a project in mind, want to collaborate,<br />
-          Or just want to say hi — my inbox is open.
-        </p>
-        <div class="contact-links">
-          <a href="https://github.com/Seped28" target="_blank" rel="noopener" class="contact-link">
-            <div class="cl-icon">
-              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
-            </div>
-            <span>GitHub</span>
-            <div class="cl-arrow">↗</div>
-          </a>
-          <a href="mailto:oluwaseunipede@gmail.com" class="contact-link" id="email-link">
-            <div class="cl-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
-            </div>
-            <span>Email Me</span>
-            <div class="cl-arrow">↗</div>
-          </a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ── FOOTER ── -->
-  <footer class="footer">
-    <div class="container footer-inner">
-      <span class="footer-logo">Oluwaseun Ipede</span>
-      <span class="footer-copy">GeoSpecial · <span id="footer-year"></span></span>
-      <a href="#home" class="footer-top">↑ Top</a>
-    </div>
-  </footer>
-
-  <script src="assets/app.js"></script>
+<script src="assets/app.js"></script>
 </body>
 </html>
