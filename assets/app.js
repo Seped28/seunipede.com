@@ -24,7 +24,7 @@ function animateTrail() {
 }
 animateTrail();
 
-document.querySelectorAll('a, button, .project-card, .skill-card, .pub-card, .contact-link').forEach(el => {
+document.querySelectorAll('a, button, .project-card, .skill-card, .pub-card, .contact-link, .award-card, .press-card').forEach(el => {
   el.addEventListener('mouseenter', () => {
     cursor.style.width  = '20px';
     cursor.style.height = '20px';
@@ -76,7 +76,7 @@ function drawContours() {
     const threshold = -1.3 + (l / levels) * 2.6;
     const isAccent = l % 4 === 0;
     ctx.beginPath();
-    ctx.strokeStyle = isAccent ? 'rgba(255,46,136,0.35)' : 'rgba(41,224,255,0.08)';
+    ctx.strokeStyle = isAccent ? 'rgba(217,164,65,0.32)' : 'rgba(79,176,165,0.09)';
     ctx.lineWidth = isAccent ? 1.1 : .6;
 
     for (let x = 0; x < canvas.width; x += step) {
@@ -100,7 +100,7 @@ function drawContours() {
       if (n > 1.0) {
         ctx.beginPath();
         ctx.arc(x, y, 1.6, 0, Math.PI * 2);
-        ctx.fillStyle = 'rgba(255,46,136,0.5)';
+        ctx.fillStyle = 'rgba(217,164,65,0.45)';
         ctx.fill();
       }
     }
@@ -118,7 +118,8 @@ const revealObs = new IntersectionObserver(entries => {
 
 document.querySelectorAll(
   '.section-label, .section-heading, .section-intro, .about-text p, .about-tags, ' +
-  '.field-card, .skill-card, .pub-card, .project-card, .contact-link, .stat, .cred-item'
+  '.profile-card, .skill-card, .pub-card, .project-card, .contact-link, .stat, .cred-item, ' +
+  '.award-card, .press-card'
 ).forEach((el, i) => {
   el.classList.add('reveal');
   el.style.transitionDelay = (i % 6) * .06 + 's';
@@ -151,7 +152,7 @@ const statObs = new IntersectionObserver(entries => {
 
 document.querySelectorAll('.stat-num').forEach(el => statObs.observe(el));
 
-// ─── TYPING EFFECT (field notes card) ────────────────────────────────
+// ─── TYPING EFFECT (profile card) ────────────────────────────────────
 const focusText = "Spatial epidemiology, GeoAI, urban resilience";
 const focusEl = document.getElementById('focus-typing');
 
@@ -167,7 +168,7 @@ function typeText(el, text, speed = 45) {
   }, speed);
 }
 
-// Trigger typing once the field card scrolls into view
+// Trigger typing once the profile card scrolls into view
 const fieldObs = new IntersectionObserver(entries => {
   entries.forEach(e => {
     if (e.isIntersecting) {
@@ -177,19 +178,20 @@ const fieldObs = new IntersectionObserver(entries => {
   });
 }, { threshold: .4 });
 
-const fieldCard = document.querySelector('.field-card');
-if (fieldCard) fieldObs.observe(fieldCard);
+const profileCard = document.querySelector('.profile-card');
+if (profileCard) fieldObs.observe(profileCard);
 
 // ─── FOOTER YEAR ─────────────────────────────────────────────────────
 document.getElementById('footer-year').textContent = new Date().getFullYear();
 
 // ─── HAMBURGER ───────────────────────────────────────────────────────
 const ham = document.getElementById('hamburger');
-const navLinks = document.querySelector('.nav-links');
+const navLinks = document.getElementById('nav-links');
 ham.addEventListener('click', () => {
   const open = navLinks.style.display === 'flex';
   navLinks.style.display = open ? 'none' : 'flex';
   navLinks.style.flexDirection = 'column';
+  navLinks.style.alignItems = 'flex-start';
   navLinks.style.position = 'absolute';
   navLinks.style.top = '68px';
   navLinks.style.left = '0';
@@ -197,12 +199,12 @@ ham.addEventListener('click', () => {
   navLinks.style.background = 'var(--bg-card)';
   navLinks.style.padding = '1.5rem 2rem';
   navLinks.style.borderBottom = '1px solid var(--border)';
-  navLinks.style.gap = '1rem';
+  navLinks.style.gap = '1.1rem';
 });
 
 // close mobile nav on link click
 navLinks.querySelectorAll('a').forEach(a => {
   a.addEventListener('click', () => {
-    if (window.innerWidth <= 640) navLinks.style.display = 'none';
+    if (window.innerWidth <= 1050) navLinks.style.display = 'none';
   });
 });
