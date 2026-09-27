@@ -310,7 +310,6 @@ body:hover .cursor { opacity: 1; }
   content: ''; position: absolute; inset: 0;
   background: linear-gradient(135deg, var(--accent-glow), transparent);
   opacity: 0; transition: opacity var(--trans);
-  pointer-events: none;
 }
 .project-card:hover { border-color: var(--border-hi); transform: translateY(-4px); box-shadow: 0 16px 40px rgba(0,0,0,.4); }
 .project-card:hover::before { opacity: 1; }
@@ -328,8 +327,6 @@ body:hover .cursor { opacity: 1; }
   border: 1px solid var(--border); padding: .25rem .65rem; border-radius: 4px; color: var(--text-dim);
 }
 .project-link-full { font-family: var(--mono); font-size: .78rem; color: var(--teal); border-bottom: 1px dotted var(--teal); width: fit-content;
-  position: relative;
-  z-index: 2;  }
 .project-link-full:hover { color: var(--accent); border-color: var(--accent); }
 
 /* ─── PRESS ─── */
