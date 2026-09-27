@@ -310,6 +310,7 @@ body:hover .cursor { opacity: 1; }
   content: ''; position: absolute; inset: 0;
   background: linear-gradient(135deg, var(--accent-glow), transparent);
   opacity: 0; transition: opacity var(--trans);
+  pointer-events: none;
 }
 .project-card:hover { border-color: var(--border-hi); transform: translateY(-4px); box-shadow: 0 16px 40px rgba(0,0,0,.4); }
 .project-card:hover::before { opacity: 1; }
